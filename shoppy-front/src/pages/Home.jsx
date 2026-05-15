@@ -1,5 +1,6 @@
 import ProductList from '@/components/product/ProductList.jsx';
 
+
 export default function Home() {
   return (
     <div className="content">
