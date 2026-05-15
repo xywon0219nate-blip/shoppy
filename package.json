@@ -1,0 +1,29 @@
+{
+  "name": "shoppy",
+  "version": "1.0.0",
+  "description": "강의용 vite + express + mysql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+   
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xywon0219nate-blip/shoppy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/xywon0219nate-blip/shoppy/issues"
+  },
+  "homepage": "https://github.com/xywon0219nate-blip/shoppy#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
