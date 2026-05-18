@@ -82,6 +82,8 @@ select   rid,
         list
 from product_return;
 
+select * from member;
+desc member;
 
 
 
