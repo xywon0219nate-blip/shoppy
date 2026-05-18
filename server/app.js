@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import productsRouter from './routes/products.js';
+import returnRouter from './routes/return.js';
 
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(express.json());
 */
 
 app.use('/products', productsRouter);
+app.use('/return',returnRouter);
 
 app.listen(PORT, () => {
    console.log(`서버 실행 중 ✅ :: ${PORT}`);

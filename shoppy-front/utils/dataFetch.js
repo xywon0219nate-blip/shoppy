@@ -20,7 +20,10 @@ export const groupByRows = (array, number) => {
    return response.data;
    };
  */
-
+export const axiosData = async (url) => {
+   const response = await axios.get(url);
+   return response.data;
+   };
 
 /**
  * 서버 연동을 위한 HTTP 메소드, CRUD 정의

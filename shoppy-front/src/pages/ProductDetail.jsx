@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { PiGiftThin } from 'react-icons/pi';
+// import { PiGiftThin } from 'react-icons/pi';
 import { ImageList } from '@/components/commons/ImageList.jsx';
 import { StarRating } from '@/components/commons/StarRating.jsx';
 import Tabs from '@/components/commons/Tabs.jsx';
@@ -63,7 +63,9 @@ export default function ProductDetail() {
          <div className="product-detail-tab">
          <Tabs currentTab={tabName} onTabChange={setTabName} />
          <div className="tabs_contents">
-            {tabName === 'detail' && <Detail imgList={imgList} pid={pid} detailInfo={product.detailInfo} />}
+            {tabName === 'detail' && <Detail imgList={imgList} 
+                                             pid={pid} 
+                                             detailInfo={product.detailInfo} />}
             {tabName === 'review' && <Review />}
             {tabName === 'qna' && <QnA pid={pid} />}
             {tabName === 'return' && <Return />}
