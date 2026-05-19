@@ -3,7 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import productsRouter from './routes/products.js';
 import returnRouter from './routes/return.js';
-import signupRouter from './routes/signup.js';
+import memberRouter from './routes/member.js';
+// import signupRouter from './routes/signup.js';
 
 
 dotenv.config();
@@ -24,7 +25,9 @@ app.use(express.json());
 
 app.use('/products', productsRouter);
 app.use('/return',returnRouter);
-app.use('/signup', signupRouter)
+app.use('/member', memberRouter);
+// app.use('/signup', signupRouter);
+
 
 app.listen(PORT, () => {
    console.log(`서버 실행 중 ✅ :: ${PORT}`);

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo , useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { axiosPost } from '../../utils/dataFetch.js';
 
@@ -6,6 +6,7 @@ const initForm = (keys) => keys.reduce((acc, k) => ({ ...acc, [k]: '' }), {});
 
 export default function Signup() {
    const navigate = useNavigate();
+   const idRef = useRef(null);
    const initArray = ['id', 'pwd', 'cpwd', 'name', 'phone', 'emailName', 'emailDomain'];
    const [form, setForm] = useState(initForm(initArray));
    const [errors, setErrors] = useState(initForm(initArray));
@@ -27,14 +28,34 @@ export default function Signup() {
       
       
       try {
-         const result = await axiosPost('/signup', form);   
+         const result = await axiosPost('/member/signup', form);   
          if(result.isSignup) navigate('/login');      
       } catch (error) {
          console.log('Signup Error ::', error);      
       }
    };
 
-   const handleIdCheck = () => alert(`"${form.id}" 사용 가능한 아이디입니다.`);
+   const handleIdCheck = async() => {
+      // 1. id 유효성 체크
+      if(idRef.current.value === "") {
+         alert('아이디를 입력해주세요');
+         idRef.current.focus();
+         return false; // 같은 페이지에 있을 경우 사용하지 않아도 괜찮음
+      } else {
+         // 2. 서버에 id 전송
+         const result = await axiosPost('/member/idCheck', {"id" : form.id.trim()}); //form.id.trim()
+         // console.log(result);
+         if(result.isFind) { 
+            alert('이미 사용중인 아이디입니다. 다시 입력해주세요');
+            idRef.current.focus();
+         } else {
+            alert('사용이 가능한 아이디입니다.');
+            // 패스워드 입력 위치로 포커스 이동
+         }
+         // trim을 이용하여 아이디 중 빈값이 있는지 확인 후 넘김
+
+      }
+   };
 
    return (
       <div className="content">
@@ -50,7 +71,9 @@ export default function Signup() {
                            id="id" name="id" 
                            value={form.id} 
                            onChange={handleChangeForm} 
-                           placeholder="아이디 입력(6~20자)" />
+                           placeholder="아이디 입력(6~20자)" 
+                        ref={idRef}
+                           />
                   <button type="button" onClick={handleIdCheck}> 중복확인</button>
                </div>
                </li>

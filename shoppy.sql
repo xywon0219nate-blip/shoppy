@@ -85,6 +85,12 @@ from product_return;
 select * from member;
 desc member;
 
+select * from member;
+select count(id) as idFind from member where id = 'test'; -- rows = [{"isFind"; 1}]
+
+-- select count(*) from member where id = 'test' and pwd = '1234'; -- DB에서 hash코드를 사용한 것이 아니기에, 사용이 불가능함
+
+
 
 
 
