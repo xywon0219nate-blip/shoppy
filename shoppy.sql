@@ -90,7 +90,5 @@ select count(id) as idFind from member where id = 'test'; -- rows = [{"isFind"; 
 
 -- select count(*) from member where id = 'test' and pwd = '1234'; -- DB에서 hash코드를 사용한 것이 아니기에, 사용이 불가능함
 
-
-
-
+select pwd from member where id = 'test';
 
