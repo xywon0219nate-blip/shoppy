@@ -92,3 +92,10 @@ select count(id) as idFind from member where id = 'test'; -- rows = [{"isFind"; 
 
 select pwd from member where id = 'test';
 
+desc cart;
+select * from cart;
+select * from product;
+select * from view
+
+-- 어떤 고객이 어떤 상품을 몇 개 구입했는가
+
