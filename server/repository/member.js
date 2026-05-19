@@ -1,6 +1,16 @@
 import pool from '../db/connection.js';
 
 /**
+ * 패스워드 조회
+ */
+export const getPassword = async(id) => {
+   const sql = ` select pwd, role from member where id = ?`;
+   const [rows] = await pool.execute(sql, [id]);
+   return rows[0];  // {"pwd": undefinded, "role": undefinded}
+}
+
+
+/**
  * 아이디 중복 체크
  */
 export const getIdCheck = async(id) => {
@@ -13,9 +23,8 @@ export const getIdCheck = async(id) => {
 }
 
 /**
- * 회원가입
+ * 회원 가입
  */
-
 export const getSignup = async(member) => {
    const {id, pwdHash, name, phone, email} = member;
    const sql = `
@@ -25,14 +34,4 @@ export const getSignup = async(member) => {
 
    const [rows] = await pool.execute(sql, [id, pwdHash, name, phone, email]);
    return rows.affectedRows;
-}
-
-/**
- * 패스워드 조회
- */
-
-export const getPassword = async(id) => {
-   const sql = ` select pwd from member where id = ?`;
-   const [rows] = await pool.execute(sql, [id]);
-   return rows[0].pwd;
 }
