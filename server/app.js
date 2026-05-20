@@ -1,11 +1,11 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import productsRouter from './routes/products.js';
-import returnRouter from './routes/return.js';
-import memberRouter from './routes/member.js';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import productsRouter from "./routes/products.js";
+import returnRouter from "./routes/return.js";
+import memberRouter from "./routes/member.js";
+import cartsRouter from "./routes/carts.js";
 // import signupRouter from './routes/signup.js';
-
 
 dotenv.config();
 
@@ -18,17 +18,18 @@ app.use(cors());
 app.use(express.json());
 
 /* 라우터 --> 클라이언트 요청 처리 (직접처리)
-*  app.get('/test',(req,res,next) => {});
-*  라우터 --> 클라이언트 요청 처리 (컨트롤러에 분배)
-*  app.use('/test', 컨트롤러함수명);
-*/
+ *  app.get('/test',(req,res,next) => {});
+ *  라우터 --> 클라이언트 요청 처리 (컨트롤러에 분배)
+ *  app.use('/test', 컨트롤러함수명);
+ */
 
-app.use('/products', productsRouter);
-app.use('/return',returnRouter);
-app.use('/member', memberRouter);
+app.use("/products", productsRouter);
+app.use("/return", returnRouter);
+app.use("/member", memberRouter);
+app.use("/carts", cartsRouter);
+
 // app.use('/signup', signupRouter);
 
-
 app.listen(PORT, () => {
-   console.log(`서버 실행 중 ✅ :: ${PORT}`);
+  console.log(`서버 실행 중 ✅ :: ${PORT}`);
 });
