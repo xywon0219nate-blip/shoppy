@@ -1,80 +1,54 @@
 use shoppy;
 select database();
 show tables;
-select * from information_schema.views where table_schena = 'shoppy';
+select * from information_schema.views where table_schema = 'shoppy';
 select * from member;
 select * from product;
 desc product;
 
-select pid,
-	name,
-    price,
-    info,
-    rate,
-    concat('images/',image) as image,
-    img_list
-from product;
-
-select product_detailinfo from product;
-select pid from product_detailinfo;
-select * from product_detailinfo;
-select rate from product;
-
-select pid,
-	name,
-    info,
-    rate,
-    img_list
-from product;
- 
-select * from product where pid = ? ;
-
-select  pid,
-            name,
-            price,
-            info,
-            rate,
-            concat('/images/', image) as image,
-            img_list as imgList
-        from product where pid = ?;
-
+-- 전체 상품 조회
 select  pid,
         concat('images/', image) as image
 from product;        
-       
+
 -- product + product_detailinfo 테이블 조인
 select  p.pid,
 		p.name,
-        p.price,
-        p.info,
-        p.rate,
-        concat('images/', p.image) as image,
-        p.img_list as imgList,
+		p.price,
+		p.info,
+		p.rate,
+		concat('/images/', p.image) as image,
+		p.img_list as imgList,
         json_object(
-			"title_ko", pd.title_ko, -- "detailInfo" : {"title_en":title_en, ...}
-			"title_en" , pd.title_en,
-			"list", pd.list) as detailInfo
-	from product p, product_detailinfo pd 
+			"title_en", pd.title_en,  
+			"title_ko", pd.title_ko,
+			"list", pd.list
+		) as detailInfo
+	from product p, product_detailinfo pd
     where p.pid = pd.pid and p.pid = 1;
+        
 
 show tables;
 select * from product_detailinfo;
 
-select * from product_qna;
+--
+select * from product_qna where pid = 1;
 desc product_qna;
 
-select 
-	qid,
-	title,
-    content,
-	is_lock as isLock,
-	is_complete as isComplete,
-    id,
-    pid,	
-    cdate
+
+select 	qid,
+		title,
+        content,
+		is_complete as isComplete,
+        is_lock as isLock,
+        id,
+        pid,
+        cdate
 from product_qna
 where pid = 1;
 
+
+-- 
 desc product_return;
 select   rid,
 		title,
@@ -82,20 +56,41 @@ select   rid,
         list
 from product_return;
 
+--
 select * from member;
 desc member;
 
-select * from member;
-select count(id) as idFind from member where id = 'test'; -- rows = [{"isFind"; 1}]
+select curdate() from dual;
 
--- select count(*) from member where id = 'test' and pwd = '1234'; -- DB에서 hash코드를 사용한 것이 아니기에, 사용이 불가능함
-
-select pwd from member where id = 'test';
-
-desc cart;
+--
+use shoppy;
+select database();
+show tables;
 select * from cart;
-select * from product;
-select * from view
+select cid from cart
+	where pid = 1 and id = 'test00' and size= 'XS';
 
--- 어떤 고객이 어떤 상품을 몇 개 구입했는가
+desc cart;    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
