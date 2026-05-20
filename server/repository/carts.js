@@ -1,6 +1,18 @@
 import pool from '../db/connection.js';
 
 /**
+ * 고객별 장바구니 리스트 조회
+ */
+export const getList = async(userId) => {
+   const sql = `
+      select * from view_cartlist where id=?
+   `;
+   const [rows] = await pool.execute(sql, [userId]);
+   return rows;
+}
+
+
+/**
  * 고객별 qty 조회
  */
 export const getCount = async(userId) => {

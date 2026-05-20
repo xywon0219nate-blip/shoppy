@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.post('/add', controller.getAdd);
 router.post('/count', controller.getCount);
+router.post('/list', controller.getList);
 
 export default router;

@@ -72,15 +72,29 @@ select cid from cart
 
 desc cart;    
 
+select sum(qty) as qty from cart where id ='test00';
+show tables;
 
+select * from view_cartlist where id='test00';
+select * from information_schema.views 
+	where table_schema = 'shoppy';
 
-
-
-
-
-
-
-
+select  `m`.`id` AS `id`,
+		`m`.`name` AS `mname`,
+        `m`.`phone` AS `phone`,
+        `m`.`email` AS `email`,
+        `p`.`pid` AS `pid`,
+        `p`.`name` AS `name`,
+        `p`.`info` AS `info`,
+        `p`.`image` AS `image`,
+        `p`.`price` AS `price`,
+        `c`.`size` AS `size`,
+        `c`.`qty` AS `qty`,
+        `c`.`cid` AS `cid`,
+        `t`.`total_price` AS `total_price` 
+        from (((`shoppy`.`member` `m` join `shoppy`.`product` `p`) 
+				join `shoppy`.`cart` `c`) 
+                join (select `c`.`id` AS `id`,sum((`c`.`qty` * `p`.`price`)) AS `total_price` from (`shoppy`.`cart` `c` join `shoppy`.`product` `p` on((`c`.`pid` = `p`.`pid`))) group by `c`.`id`) `t`) where ((`m`.`id` = `c`.`id`) and (`p`.`pid` = `c`.`pid`) and (`c`.`id` = `t`.`id`))
 
 
 

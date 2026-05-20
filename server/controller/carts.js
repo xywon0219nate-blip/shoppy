@@ -1,6 +1,14 @@
 import * as repository from '../repository/carts.js';
 
 /**
+ * 고객별 장바구니 리스트 조회
+ */
+export const getList = async(req, res, next) => {
+   const result = await repository.getList(req.body.userId);
+   res.json(result);
+}
+
+/**
  * 장바구니 수량 조회
  */
 export const getCount = async(req, res, next) => {
