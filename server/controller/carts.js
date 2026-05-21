@@ -1,6 +1,23 @@
 import * as repository from "../repository/carts.js";
 
 /**
+ * 장바구니 아이템 삭제
+ */
+export const getDelete = async (req, res, next) => {
+  const result = await repository.getDelete(req.body.cid);
+  res.json({ isDelete: result.affectedRows });
+};
+
+/**
+ * 장바구니 수량 변경
+ */
+export const getQtyUpdate = async (req, res, next) => {
+  const { cid, type } = req.body;
+  const result = await repository.getQtyUpdate(cid, type);
+  res.json({ isUpdate: result.affectedRows });
+};
+
+/**
  * 고객별 장바구니 리스트 조회
  */
 export const getList = async (req, res, next) => {
